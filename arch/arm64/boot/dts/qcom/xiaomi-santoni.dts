@@ -25,4 +25,23 @@
 	qcom,pmic-id = <0x10019 0x010011 0x0 0x0>;
 };
 
+&firmware {
+	android {
+		/delete-node/ vbmeta;
+		fstab {
+			vendor {
+				dev = "/dev/block/platform/soc/7824900.sdhci/by-name/cust";
+				fsmgr_flags = "wait";
+			};
+			system {
+				compatible = "android,system";
+				dev = "/dev/block/platform/soc/7824900.sdhci/by-name/system";
+				type = "ext4";
+				mnt_flags = "ro,barrier=1,discard";
+				fsmgr_flags = "wait";
+				status = "ok";
+			};
+		};
+	};
+};
 #include "santoni/msm8937-santoni.dtsi"
